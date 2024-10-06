@@ -11,6 +11,7 @@ public class Main {
         System.out.println(Arrays.toString(array));
 
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a number you want to search:");
         int target = sc.nextInt();
 
         System.out.println(search(target, array));
