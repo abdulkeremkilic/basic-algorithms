@@ -11,6 +11,7 @@ public class Main {
         String p3 = "(()))";
         String p4 = "({[{]}})";
         String p5 = "([{]})";
+        String p55 = "([{}])";
         String p6 = "((()))";
 
         //System.out.println(isValid(p1));
@@ -18,6 +19,7 @@ public class Main {
         //System.out.println(isValid(p3));
         //System.out.println(isValid(p4));
         System.out.println(isValid(p6));
+        System.out.println(isValid2(p55));
     }
 
     public static boolean isValid(String s) {
@@ -44,5 +46,26 @@ public class Main {
             }
         }
         return stack.isEmpty();
+    }
+
+
+    public static boolean isValid2(String s) {
+        int i = -1;
+        char[] stack = new char[s.length()];
+        for (char ch : s.toCharArray()) {
+            if (ch == '(' || ch == '{' || ch == '[')
+                stack[++i] = ch; //stack for openings; fill up the openings first
+            else {
+                if (i >= 0 // i equals to the index where the last opening parenthesis left of.
+                        && ((stack[i] == '(' && ch == ')') //after the openings we only left of with the closings.
+                        || (stack[i] == '{' && ch == '}')
+                        || (stack[i] == '[' && ch == ']')))
+                    i--; // if there is match found with the current 'i'; we decrease 'i' to search for the right value for next parenthesis.
+                    //       (  -   [  -  {  -   }   -   ]   -   )
+                else
+                    return false;
+            }
+        }
+        return i == -1;
     }
 }
