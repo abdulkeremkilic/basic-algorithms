@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.function.BiFunction;
 
 public class Main {
@@ -24,7 +26,12 @@ public class Main {
             }
         };
 
-        System.out.println(canSum.apply(7L, Arrays.asList(2L,3L))); //true
+
+        //System.out.println(canSumAsync(300L, Arrays.asList(7L,14L))); //false
+        //it doesn't work even with multithreading.
+
+
+        System.out.println(canSumAsync(7L, Arrays.asList(2L,3L))); //true
         System.out.println(canSum.apply(7L, Arrays.asList(5L,4L,3L,7L))); //true
         System.out.println(canSum.apply(7L, Arrays.asList(2L,4L))); //false
         System.out.println(canSum.apply(8L, Arrays.asList(2L,3L,5L))); //true
@@ -48,6 +55,27 @@ public class Main {
             boolean bool = canSumWithMemo(reminder, numbers, memo);
             memo.put(reminder, bool);
             if(bool) return true;
+        }
+        return false;
+    }
+
+    public static Boolean canSumAsync(Long targetSum, List<Long> numbers) {
+        if (targetSum == 0) return true;
+        if(targetSum < 0) return false;
+
+        CompletableFuture<Boolean>[] futures = numbers.stream()
+                .map(number -> CompletableFuture.supplyAsync(() -> {
+                    Long reminder = targetSum - number;
+                    return canSumAsync(reminder, numbers);
+                }))
+                .toArray(CompletableFuture[]::new);
+
+        for(CompletableFuture<Boolean> future : futures) {
+            try {
+                if(future.get()) return true;
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
