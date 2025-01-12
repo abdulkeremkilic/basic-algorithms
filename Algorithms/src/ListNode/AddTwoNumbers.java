@@ -1,6 +1,6 @@
 package ListNode;
 
-import ListNode.Class.ListNode;
+import Model.ListNode;
 
 public class AddTwoNumbers {
     public static void main(String[] args) {
@@ -32,6 +32,7 @@ public class AddTwoNumbers {
         ListNode head = new ListNode(0);
         ListNode curr = head;
         int carry = 0;
+        // if there is a carry number or l1 is not null; means there is still numbers ahead of the node or l2 is not null; proceed
         while (l1 != null || l2 != null || carry > 0) {
             if (l1 != null) {
                 carry += l1.getVal();

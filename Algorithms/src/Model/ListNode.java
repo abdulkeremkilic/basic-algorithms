@@ -1,4 +1,4 @@
-package ListNode.Class;
+package Model;
 
 public class ListNode {
     private int val;
