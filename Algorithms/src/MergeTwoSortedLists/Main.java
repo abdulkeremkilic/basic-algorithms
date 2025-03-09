@@ -1,18 +1,18 @@
 package MergeTwoSortedLists;
-import Model.ListNode;
+import Model.Node;
 
 public class Main {
     public static void main(String[] args) {
 
-        ListNode l1 = new ListNode(1);
-        l1.setNext(new ListNode(3));
-        l1.getNext().setNext(new ListNode(5));
+        Node l1 = new Node(1);
+        l1.setNext(new Node(3));
+        l1.getNext().setNext(new Node(5));
 
-        ListNode l2 = new ListNode(2);
-        l2.setNext(new ListNode(4));
-        l2.getNext().setNext(new ListNode(6));
+        Node l2 = new Node(2);
+        l2.setNext(new Node(4));
+        l2.getNext().setNext(new Node(6));
 
-        ListNode mergedHead = mergeTwoLists(l1, l2);
+        Node mergedHead = mergeTwoLists(l1, l2);
 
         while (mergedHead != null) {
             System.out.print(mergedHead.getVal() + " -> ");
@@ -21,10 +21,10 @@ public class Main {
         System.out.print("null");
     }
 
-    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    public static Node mergeTwoLists(Node l1, Node l2) {
         // Create a dummy node to simplify the merging process.
-        ListNode dummy = new ListNode(-1); // this is a dummy node value; when returning this we'll return dummy.getNext()
-        ListNode current = dummy;
+        Node dummy = new Node(-1); // this is a dummy node value; when returning this we'll return dummy.getNext()
+        Node current = dummy;
 
         // Loop through both lists until we reach the end of one.
         while (l1 != null && l2 != null) {

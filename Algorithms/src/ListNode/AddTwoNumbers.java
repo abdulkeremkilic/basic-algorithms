@@ -1,23 +1,23 @@
 package ListNode;
 
-import Model.ListNode;
+import Model.Node;
 
 public class AddTwoNumbers {
     public static void main(String[] args) {
 
         // [2,4,3]
-        ListNode l1 = new ListNode(2);
-        ListNode l2 = new ListNode(4);
-        ListNode l3 = new ListNode(3);
+        Node l1 = new Node(2);
+        Node l2 = new Node(4);
+        Node l3 = new Node(3);
 
         l2.setNext(l3);
         l1.setNext(l2);
 
 
         // [5,6,4]
-        ListNode l4 = new ListNode(5);
-        ListNode l5 = new ListNode(6);
-        ListNode l6 = new ListNode(4);
+        Node l4 = new Node(5);
+        Node l5 = new Node(6);
+        Node l6 = new Node(4);
 
         l5.setNext(l6);
         l4.setNext(l5);
@@ -28,9 +28,9 @@ public class AddTwoNumbers {
 
     }
 
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode head = new ListNode(0);
-        ListNode curr = head;
+    public static Node addTwoNumbers(Node l1, Node l2) {
+        Node head = new Node(0);
+        Node curr = head;
         int carry = 0;
         // if there is a carry number or l1 is not null; means there is still numbers ahead of the node or l2 is not null; proceed
         while (l1 != null || l2 != null || carry > 0) {
@@ -44,7 +44,7 @@ public class AddTwoNumbers {
                 l2 = l2.getNext(); // Shifting the ListNode to next ListNode.
             }
 
-            curr.setNext(new ListNode(carry % 10)); //set reminder as the next ListNode's val.
+            curr.setNext(new Node(carry % 10)); //set reminder as the next ListNode's val.
             // Note: suggest you have 12 as carry sum. You have to get the 2 out of it to pass it as a next.val.
             // [2,4,3]
             // [5,6,4]
@@ -57,7 +57,7 @@ public class AddTwoNumbers {
         return head.getNext();
     }
 
-    public static void listNodePrinter(ListNode listNode) {
+    public static void listNodePrinter(Node listNode) {
         System.out.print("[");
         while (listNode != null) {
             System.out.print(listNode.getVal());
