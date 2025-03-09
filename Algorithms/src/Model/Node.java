@@ -1,14 +1,14 @@
 package Model;
 
-public class ListNode {
+public class Node {
     private int val;
-    private ListNode next;
+    private Node next;
 
-    public ListNode(int x) {
+    public Node(int x) {
         val = x;
     }
 
-    public ListNode(int val, ListNode next) {
+    public Node(int val, Node next) {
         this.val = val;
         this.next = next;
     }
@@ -17,11 +17,11 @@ public class ListNode {
         return this.val;
     }
 
-    public ListNode getNext() {
+    public Node getNext() {
         return this.next;
     }
 
-    public void setNext(ListNode next) {
+    public void setNext(Node next) {
         this.next = next;
     }
 
